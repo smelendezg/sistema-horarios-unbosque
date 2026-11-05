@@ -1,0 +1,12 @@
+import {BookOpen,CalendarDays,ChevronDown,ClipboardCheck,Heart,LogOut,Settings,Upload,UserCog,Users} from 'lucide-react';
+import {Link,useLocation} from 'react-router-dom';
+import {useState,type ReactNode} from 'react';
+import type {User} from '../types';
+import Logo from './Logo';
+
+export default function Shell({user,onLogout,children}:{user:User;onLogout:()=>void;children:ReactNode}){
+  const loc=useLocation();const [profile,setProfile]=useState(false);
+  const nav=[['/','Resumen',BookOpen,true],['/horario',user.role==='DOCENTE'||user.role==='ESTUDIANTE'?'Horario publicado':'Constructor',CalendarDays,['DIRECCION','COMITE_AREA','DOCENTE','ESTUDIANTE'].includes(user.role)],['/datos-maestros','Datos maestros',Users,['DIRECCION','ADMINISTRADOR'].includes(user.role)],['/matricula','Matrícula',Upload,['DIRECCION','ADMINISTRADOR','COMITE_AREA'].includes(user.role)],['/usuarios','Usuarios',UserCog,user.role==='ADMINISTRADOR'],['/revision','Revisión',ClipboardCheck,['COMITE_TACTICO','DIRECCION','COMITE_AREA'].includes(user.role)],['/parametros','Parámetros',Settings,['DIRECCION','ADMINISTRADOR'].includes(user.role)]] as const;
+  return <div className="app-shell"><aside><Logo/><nav>{nav.filter(x=>x[3]).map(([to,label,Icon])=><Link key={label} to={to} className={to===loc.pathname?'active':''}><Icon size={19}/>{label}</Link>)}</nav><div className="sidebar-note"><span className="note-icon"><Heart size={18}/></span><b>Semestre en marcha</b><small>Tu horario va tomando forma con calma.</small></div><button className="logout" onClick={onLogout}><LogOut size={18}/>Cerrar sesión</button></aside><main><header><div><p className="eyebrow">Programa de Ingeniería de Sistemas</p><h2>Hola, {user.name.split(' ')[0]}</h2></div><div className="profile-wrap"><button className="profile" onClick={()=>setProfile(!profile)} aria-expanded={profile}><span>{user.name.split(' ').map(x=>x[0]).slice(0,2).join('')}</span><div><b>{user.name}</b><small>{roleLabel(user.role)}</small></div><ChevronDown size={16}/></button>{profile&&<div className="profile-menu"><b>{user.email}</b><small>{roleLabel(user.role)}</small><button onClick={onLogout}><LogOut size={15}/>Cerrar sesión</button></div>}</div></header>{children}</main></div>;
+}
+const roleLabel=(r:string)=>({ADMINISTRADOR:'Administrador',DIRECCION:'Dirección de Programa',COMITE_AREA:'Comité de Área',COMITE_TACTICO:'Comité Táctico',DOCENTE:'Docente',ESTUDIANTE:'Estudiante'}[r]??r);

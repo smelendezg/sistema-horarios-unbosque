@@ -1,0 +1,41 @@
+ID,Epica,HU,Titulo,Tipo,Estado,Resultado esperado,Evidencia
+CP-01,Seguridad,HU-01,Inicio de sesión válido,Automática,Aprobado,Acceso y menú según rol,AuthAndValidationTest y login.spec.ts
+CP-02,Seguridad,HU-01,Credenciales inválidas,Automática,Aprobado,401 con mensaje genérico,AuthAndValidationTest y login.spec.ts
+CP-03,Seguridad,HU-01,Permisos por rol,Automática,Aprobado,Acciones restringidas por RBAC,AuthAndValidationTest y roles-and-workflow.spec.ts
+CP-04,Construcción,HU-01,Crear usuario,Automática,Aprobado,Cuenta institucional con clave cifrada,MissingCasesTest y roles-and-workflow.spec.ts
+CP-05,Construcción,HU-01,Cambiar rol,Automática,Aprobado,Menú y permisos actualizados,MissingCasesTest y roles-and-workflow.spec.ts
+CP-06,Construcción,HU-01,Disponibilidad docente,Automática,Aprobado,Guardar franjas personalizadas desde 16:00,MissingCasesTest y roles-and-workflow.spec.ts
+CP-07,Construcción,HU-01,Crear aula,Automática,Aprobado,Aula con capacidad y equipos,MasterDataAndSuggestionTest
+CP-08,Construcción,HU-01,Actualizar curso,Automática,Aprobado,Créditos actualizados,MasterDataAndSuggestionTest
+CP-09,Construcción,HU-01,Capacidad cero,Automática,Aprobado,Validación rechaza el dato,AuthAndValidationTest
+CP-10,Construcción,HU-01,Cambiar parámetro objetivo,Automática,Aprobado,Valor persistido,MasterDataAndSuggestionTest
+CP-11,Construcción,HU-01,Frecuencia fuera de rango,Automática,Aprobado,Validación rechaza frecuencia 5,AuthAndValidationTest
+CP-12,Construcción,HU-02,Sugerir con objetivo 35,Automática,Aprobado,Demanda 70 recomienda 2,MasterDataAndSuggestionTest
+CP-13,Construcción,HU-02,Valor límite 40,Automática,Aprobado,Recomienda 1 sección,MasterDataAndSuggestionTest
+CP-14,Construcción,HU-02,Valor límite 44,Automática,Aprobado,Tolerancia permite 1 sección,MasterDataAndSuggestionTest
+CP-15,Construcción,HU-02,Valor límite 45,Automática,Aprobado,Recomienda 2 secciones,MasterDataAndSuggestionTest
+CP-16,Construcción,HU-02,Sugerencia desde matrícula,Automática,Aprobado,Usa demanda importada,MissingCasesTest y roles-and-workflow.spec.ts
+CP-17,Construcción,HU-03,Mover sesión,Automática,Aprobado,Conserva duración y cambia franja,SchedulingRulesTest
+CP-18,Construcción,HU-03,Interacciones de arrastre,Manual,Pendiente tercero,Asignar con máximo 3 interacciones,evidencia-prueba-tercero.md
+CP-19,Construcción,HU-03,Rendimiento de reglas,Automática,Aprobado,60 cálculos en menos de 2 segundos,SchedulingRulesTest
+CP-20,Construcción,HU-03,Bloqueo de almuerzo,Automática,Aprobado,Rechaza 12:00 a 14:00,InstitutionalSlotRuleTest
+CP-21,Construcción,HU-03,Bloqueo sábado,Automática,Aprobado,Rechaza desde 13:00,InstitutionalSlotRuleTest
+CP-22,Construcción,HU-03,Choque de docente,Automática,Aprobado,Conflicto detectado,SchedulingRulesTest
+CP-23,Construcción,HU-03,Capacidad insuficiente,Automática,Aprobado,Conflicto detectado,SchedulingRulesTest
+CP-24,Construcción,HU-03,Fuera de disponibilidad,Automática,Aprobado,Conflicto detectado,SchedulingRulesTest
+CP-25,Construcción,HU-03,Docente no habilitado,Automática,Aprobado,Conflicto detectado,SchedulingRulesTest
+CP-26,Construcción,HU-03,Conflictos simultáneos,Mixta,Pendiente evidencia visual,Muestra ambos mensajes rojos,SchedulingRulesTest y video
+CP-27,Construcción,HU-03,Días consecutivos,Automática,Aprobado,Advertencia sin bloquear,SchedulingRulesTest
+CP-28,Publicación,HU-05,Enviar a revisión,Automática,Aprobado,Cambia a EN_REVISION,ScheduleWorkflowTest
+CP-29,Publicación,HU-05,Transición inválida,Automática,Aprobado,409 sin modificar estado,ScheduleWorkflowTest
+CP-30,Publicación,HU-06,Aprobar horario,Automática,Aprobado,Cambia a APROBADO,ScheduleWorkflowTest y roles-and-workflow.spec.ts
+CP-31,Publicación,HU-06,Devolver con observación,Automática,Aprobado,Regresa a BORRADOR y conserva comentario,ScheduleWorkflowTest
+CP-32,Publicación,HU-07,Publicar aprobado,Automática,Aprobado,Cambia a PUBLICADO,ScheduleWorkflowTest y roles-and-workflow.spec.ts
+CP-33,Publicación,HU-07,Publicar borrador,Automática,Aprobado,Operación rechazada,ScheduleWorkflowTest
+CP-34,Publicación,HU-07,Bloquear publicado,Automática,Aprobado,Modo solo consulta,ScheduleWorkflowTest y roles-and-workflow.spec.ts
+CP-35,Publicación,HU-08,Consulta pública,Automática,Aprobado,Entrega última versión publicada,ScheduleWorkflowTest y roles-and-workflow.spec.ts
+CP-36,Publicación,HU-08,Borrador no público,Automática,Aprobado,404 si no existe publicado,ScheduleWorkflowTest
+CP-37,Construcción,HU-02,Importar CSV válido,Automática,Aprobado,Guarda todas las filas,MissingCasesTest y roles-and-workflow.spec.ts
+CP-38,Construcción,HU-02,Rechazar CSV inválido,Automática,Aprobado,No guarda y lista errores,MissingCasesTest
+CP-39,Construcción,HU-04,Exportar PDF,Automática,Aprobado,Archivo PDF válido,ExportServiceTest y roles-and-workflow.spec.ts
+CP-40,Construcción,HU-04,Exportar Excel,Automática,Aprobado,Libro XLSX con datos,ExportServiceTest y roles-and-workflow.spec.ts

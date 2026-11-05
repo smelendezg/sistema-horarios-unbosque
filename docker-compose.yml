@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: horarios
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes: [horarios_data:/var/lib/postgresql/data]
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -U postgres -d horarios"], interval: 5s, timeout: 3s, retries: 10}
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: jdbc:postgresql://db:5432/horarios
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      JWT_SECRET: desarrollo-docker-secreto-largo-cambiar
+      CORS_ORIGIN: http://localhost:5173
+    ports: ["8080:8080"]
+    depends_on: {db: {condition: service_healthy}}
+  frontend:
+    build: ./frontend
+    ports: ["5173:80"]
+    depends_on: [backend]
+volumes: {horarios_data: {}}

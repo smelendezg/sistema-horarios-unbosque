@@ -1,0 +1,17 @@
+export type User={name:string;email:string;role:string;token:string};
+export type Session={id:number;sectionId:number;courseCode:string;courseName:string;sectionNumber:number;teacher:string;classroom:string;day:number;start:string;end:string};
+export type Section={id:number;courseCode:string;courseName:string;number:number;teacher:string;estimated:number;weeklyFrequency:number;assignedSessions:number};
+export type Schedule={id:number;period:string;version:number;status:string;sessions:Session[];unassigned:Section[]};
+export type Issue={nivel:'ERROR'|'ADVERTENCIA';codigo:string;mensaje:string};
+export type Course={id:number;codigo:string;nombre:string;creditos:number;frecuenciaSemanal:number;requiereComputadores:boolean;requiereSillasMoviles:boolean};
+export type Teacher={id:number;idExterno:string;nombre:string;correo:string;vinculacion:string;escalafon:string};
+export type Classroom={id:number;codigo:string;nombre:string;capacidad:number;computadores:boolean;sillasMoviles:boolean};
+export type Period={id:number;codigo:string};
+export type MasterSection={id:number;curso:Course;periodo:Period;docente:Teacher;numero:number;estudiantesEstimados:number;estado:string};
+export type MasterData={courses:Course[];teachers:Teacher[];classrooms:Classroom[];sections:MasterSection[];periods:Period[]};
+export type Parameter={id:number;clave:string;valor:string;unidad:string;descripcion:string};
+export type Review={id:number;decision:string;observaciones:string;fecha:string;usuario:string};
+export type ManagedUser={id:number;nombre:string;correo:string;rol:string;activo:boolean};
+export type Availability={id?:number;dia:number;horaInicio:string;horaFin:string};
+export type Enrollment={id:number;periodoId:number;periodo:string;cursoId:number;codigoCurso:string;curso:string;demanda:number;minimo:number;recomendado:number;fechaImportacion:string};
+export type ImportResult={procesados:number;correctos:number;errores:string[]};
